@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Core Lab - Leistungen</title>
+  <style>
+    :root {
+      --primary: #21c1ed;
+      --secondary: #70d0eb;
+      --accent: #de2b40;
+      --background: #f2f6f7;
+      --text: #1d3035;
+      --text-light: #1d3035cc;
+      --white: #ffffff;
+      --font-heading: 'Outfit', sans-serif;
+      --font-body: 'Open Sans', sans-serif;
+      --radius: 11px;
+      --section-padding: 93px;
+      --container-width: 1210px;
+      --nav-height: 81px;
+      --shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+      --shadow-lg: 0 10px calc(16px * 2) rgba(0, 0, 0, 0.12);
+      --shadow-glow: 0 0 30px #21c1ed40;
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      --glass-bg: rgba(255, 255, 255, 0.1);
+      --glass-border: rgba(255, 255, 255, 0.2);
+      --btn-padding: 17px 34px;
+    }
+
+    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&family=Open+Sans:wght@300;400;500;600&display=swap');
+
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--text);
+      background: var(--background);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--text);
+    }
+
+    h1 { font-size: clamp(2.5rem, 6vw, 4rem); }
+    h2 { font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 1rem; }
+    h3 { font-size: clamp(1.25rem, 2vw, 1.5rem); }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .section {
+      padding: 5rem 0;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .section-header h2 {
+      margin-bottom: 1rem;
+    }
+
+    .section-header p {
+      color: var(--text-light);
+      max-width: 600px;
+      margin: 0 auto;
+      font-size: 1.125rem;
+    }
+
+    .nav {
+      position: sticky; top: 0; z-index: 1000;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      box-shadow: var(--shadow);
+      border-bottom: 1px solid rgba(0,0,0,0.1);
+      height: var(--nav-height);
+      display: flex;
+      align-items: center;
+      transition: var(--transition);
+    }
+    .nav-container {
+      max-width: var(--container-width);
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: white;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      color: white;
+      font-weight: 500;
+      padding: 0.5rem 0;
+      position: relative;
+    }
+    .nav-links a:hover { color: var(--primary); }
+    .nav-cta {
+      background: white;
+      color: var(--primary);
+      padding: var(--btn-padding);
+      border-radius: var(--radius);
+      font-weight: 600;
+    }
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+    }
+
+    .footer {
+      background: var(--background); color: var(--text);
+      padding: 4rem 0 2rem;
+      margin-top: -50px; padding-top: 100px;
+    }
+    .footer-container {
+      max-width: var(--container-width);
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 3rem;
+    }
+    .footer-col h4 {
+      margin-bottom: 1.5rem;
+      font-size: 1.1rem;
+      color: var(--text);
+    }
+    .footer-col ul {
+      list-style: none;
+    }
+    .footer-col li {
+      margin-bottom: 0.75rem;
+    }
+    .footer-col a {
+      color: var(--text-light);
+      transition: var(--transition);
+    }
+    .footer-col a:hover {
+      color: var(--primary);
+    }
+    .footer-bottom {
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(0,0,0,0.1);
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.9rem;
+      color: var(--text-light);
+    }
+    @media (max-width: 768px) {
+      .footer-container { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 480px) {
+      .footer-container { grid-template-columns: 1fr; text-align: center; }
+    }
+
+    .split-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    .split-text h3 {
+      margin-bottom: 1rem;
+    }
+    .split-text p {
+      color: var(--text-light);
+      line-height: 1.8;
+      margin-bottom: 1rem;
+    }
+    .split-list ul {
+      list-style: none;
+      padding: 0;
+    }
+    .split-list li {
+      padding: 0.75rem 0;
+      padding-left: 2rem;
+      position: relative;
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
+    .split-list li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: var(--primary);
+      font-weight: bold;
+    }
+    @media (max-width: 768px) {
+      .split-section { grid-template-columns: 1fr; gap: 2rem; }
+    }
+
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 2rem;
+      text-align: center;
+      padding: 3rem 0;
+    }
+    .stat {
+      padding: 1.5rem;
+    }
+    .stat-num {
+      display: block;
+      font-size: 3rem;
+      font-weight: 800;
+      color: var(--primary);
+      font-family: var(--font-heading);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+    .stat-label {
+      color: var(--text-light);
+      font-size: 1rem;
+    }
+
+    .cta-section {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      padding: 5rem 0;
+      text-align: center;
+    }
+
+    .cta-section h2 {
+      color: white;
+      margin-bottom: 1rem;
+    }
+
+    .cta-section p {
+      opacity: 0.9;
+      margin-bottom: 2rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cta-section .btn {
+      background: white;
+      color: var(--text);
+      border: 2px solid white;
+      font-weight: 700;
+    }
+    .cta-section .btn:hover {
+      background: transparent;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVIGATION (PFLICHT - von unten kopieren) -->
+  <nav class="nav">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">Core Lab</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Startseite</a></li>
+        <li><a href="ueber-uns.html">Über uns</a></li>
+        <li><a href="leistungen.html">Leistungen</a></li>
+        <li><a href="kontakt.html">Kontakt</a></li>
+        <li><a href="impressum.html">Impressum</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Unsere Leistungen</h2>
+        <p>Wir bieten eine breite Palette an IT-Dienstleistungen, die speziell auf Ihre geschäftlichen Anforderungen zugeschnitten sind. Unsere Experten sorgen dafür, dass Ihre Systeme reibungslos funktionieren und stets auf dem neuesten Stand sind.</p>
+      </div>
+      <div class="split-section">
+        <div class="split-text">
+          <h3>Netzwerkplanung und -installation</h3>
+          <p>Wir bieten umfassende Dienstleistungen in der Netzwerkplanung und -installation an. Unsere Experten analysieren Ihre Anforderungen und erstellen ein maßgeschneidertes Netzwerkdesign, das sowohl effizient als auch skalierbar ist.</p>
+          <p>Von der Verkabelung bis zur Konfiguration der Netzwerkgeräte übernehmen wir alle Schritte, um sicherzustellen, dass Ihr Netzwerk zuverlässig und zukunftssicher ist.</p>
+        </div>
+        <div class="split-list">
+          <ul>
+            <li>Individuelle Netzwerkplanung</li>
+            <li>Effiziente Installation</li>
+            <li>Zukunftssichere Lösungen</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section alt-bg">
+    <div class="container">
+      <div class="split-section">
+        <div class="split-list">
+          <ul>
+            <li>Proaktive Wartung</li>
+            <li>Schnelle Fehlerbehebung</li>
+            <li>24/7 Überwachung</li>
+          </ul>
+        </div>
+        <div class="split-text">
+          <h3>IT-Support und Wartung</h3>
+          <p>Unser IT-Supportteam steht Ihnen rund um die Uhr zur Verfügung, um technische Probleme schnell und effizient zu lösen. Wir bieten proaktive Wartungsdienste an, um mögliche Ausfälle zu verhindern, bevor sie auftreten.</p>
+          <p>Mit unserer 24/7 Überwachung stellen wir sicher, dass Ihre IT-Infrastruktur stets optimal funktioniert.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section alt-bg">
+    <div class="container">
+      <div class="stats-row">
+        <div class="stat">
+          <span class="stat-num">100%</span>
+          <span class="stat-label">Kundenzufriedenheit</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num">24h</span>
+          <span class="stat-label">Reaktionszeit</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num">10+</span>
+          <span class="stat-label">Jahre Erfahrung</span>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="cta-section">
+    <div class="container">
+      <h2>Interessiert an unseren Dienstleistungen?</h2>
+      <p>Kontaktieren Sie uns noch heute, um mehr über unsere maßgeschneiderten IT-Lösungen zu erfahren.</p>
+      <a href="kontakt.html" class="btn">Kontakt aufnehmen</a>
+    </div>
+  </section>
+
+  <!-- FOOTER (PFLICHT - von unten kopieren) -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="index.html">Startseite</a></li>
+          <li><a href="ueber-uns.html">Über uns</a></li>
+          <li><a href="leistungen.html">Leistungen</a></li>
+          <li><a href="kontakt.html">Kontakt</a></li>
+          <li><a href="impressum.html">Impressum</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Kontakt</h4>
+        <ul>
+          <li><a href="mailto:zentrale@corelab-online.de">zentrale@corelab-online.de</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2023 Core Lab. Alle Rechte vorbehalten.</p>
+    </div>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Core Lab - Startseite</title>
+  <style>
+    :root {
+      --primary: #21c1ed;
+      --secondary: #70d0eb;
+      --accent: #de2b40;
+      --background: #f2f6f7;
+      --text: #1d3035;
+      --text-light: #1d3035cc;
+      --white: #ffffff;
+      --font-heading: 'Outfit', sans-serif;
+      --font-body: 'Open Sans', sans-serif;
+      --radius: 11px;
+      --section-padding: 93px;
+      --container-width: 1210px;
+      --nav-height: 81px;
+      --shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+      --shadow-lg: 0 10px calc(16px * 2) rgba(0, 0, 0, 0.12);
+      --shadow-glow: 0 0 30px #21c1ed40;
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      --glass-bg: rgba(255, 255, 255, 0.1);
+      --glass-border: rgba(255, 255, 255, 0.2);
+      --btn-padding: 17px 34px;
+    }
+
+    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&family=Open+Sans:wght@300;400;500;600&display=swap');
+
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--text);
+      background: var(--background);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--text);
+    }
+
+    h1 { font-size: clamp(2.5rem, 6vw, 4rem); }
+    h2 { font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 1rem; }
+    h3 { font-size: clamp(1.25rem, 2vw, 1.5rem); }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .section {
+      padding: 5rem 0;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .section-header h2 {
+      margin-bottom: 1rem;
+    }
+
+    .section-header p {
+      color: var(--text-light);
+      max-width: 600px;
+      margin: 0 auto;
+      font-size: 1.125rem;
+    }
+
+    .nav {
+      position: sticky; top: 0; z-index: 1000;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      box-shadow: var(--shadow);
+      border-bottom: 1px solid rgba(0,0,0,0.1);
+      height: var(--nav-height);
+      display: flex;
+      align-items: center;
+      transition: var(--transition);
+    }
+    .nav-container {
+      max-width: var(--container-width);
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: white;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      color: white;
+      font-weight: 500;
+      padding: 0.5rem 0;
+      position: relative;
+    }
+    .nav-links a:hover { color: var(--primary); }
+    .nav-cta {
+      background: white;
+      color: var(--primary);
+      padding: var(--btn-padding);
+      border-radius: var(--radius);
+      font-weight: 600;
+    }
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+    }
+
+    .hero {
+      min-height: 80vh;
+      padding: calc(var(--nav-height) + 4rem) 0 4rem;
+      background: linear-gradient(135deg, var(--background) 0%, var(--secondary)10 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-container {
+      max-width: var(--container-width);
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      display: flex; flex-direction: column; align-items: center; text-align: center;
+    }
+    .hero-content {
+      text-align: center;
+    }
+    .hero-content h1 {
+      margin-bottom: 1.5rem;
+    }
+    .hero-content p {
+      font-size: 1.25rem;
+      color: var(--text-light);
+      margin-bottom: 2rem;
+      max-width: 600px;
+      line-height: 1.8;
+      margin-left: auto; margin-right: auto;
+    }
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .hero-visual {
+      position: relative;
+    }
+    .hero-visual::before {
+      content: '';
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      background: linear-gradient(135deg, var(--primary)30, var(--accent)30);
+      border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+      animation: blob 8s ease-in-out infinite;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    @media (max-width: 768px) {
+      .hero-container { grid-template-columns: 1fr; text-align: center; }
+      .hero-buttons { justify-content: center; }
+      .hero-visual { display: none; }
+    }
+
+    .cards-grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 2rem;
+    }
+
+    .simple-card {
+      background: white;
+      border-radius: var(--radius);
+      padding: 2.5rem;
+      box-shadow: var(--shadow);
+      border-top: 4px solid var(--primary);
+      transition: var(--transition);
+    }
+    .simple-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lg);
+    }
+    .simple-card h3 {
+      margin-bottom: 1rem;
+      color: var(--primary);
+    }
+    .simple-card p {
+      color: var(--text-light);
+      line-height: 1.8;
+    }
+
+    .numbered-list {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .numbered-item {
+      display: flex;
+      gap: 2rem;
+      align-items: flex-start;
+    }
+    .numbered-item .num {
+      font-size: 3rem;
+      font-weight: 800;
+      color: var(--primary);
+      opacity: 0.3;
+      font-family: var(--font-heading);
+      line-height: 1;
+      min-width: 80px;
+    }
+    .numbered-item > div {
+      flex: 1;
+    }
+    .numbered-item h3 {
+      margin-bottom: 0.5rem;
+    }
+    .numbered-item p {
+      color: var(--text-light);
+      line-height: 1.7;
+    }
+
+    .feature-boxes {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+    }
+    .feature-box {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      padding: 3rem;
+      border-radius: var(--radius);
+    }
+    .feature-box h3 {
+      color: white;
+      margin-bottom: 1rem;
+    }
+    .feature-box p {
+      opacity: 0.9;
+      line-height: 1.8;
+    }
+    @media (max-width: 768px) {
+      .feature-boxes { grid-template-columns: 1fr; }
+    }
+
+    .faq-list {
+      max-width: 800px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    .faq-item {
+      background: white;
+      border-radius: var(--radius);
+      padding: 2rem;
+      box-shadow: var(--shadow);
+    }
+    .faq-item h4 {
+      color: var(--primary);
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+    }
+    .faq-item p {
+      color: var(--text-light);
+      line-height: 1.7;
+    }
+
+    .footer {
+      background: var(--background); color: var(--text);
+      padding: 4rem 0 2rem;
+      margin-top: -50px; padding-top: 100px;
+    }
+    .footer-container {
+      max-width: var(--container-width);
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 3rem;
+    }
+    .footer-col h4 {
+      margin-bottom: 1.5rem;
+      font-size: 1.1rem;
+      color: var(--text);
+    }
+    .footer-col ul {
+      list-style: none;
+    }
+    .footer-col li {
+      margin-bottom: 0.75rem;
+    }
+    .footer-col a {
+      color: var(--text-light);
+      transition: var(--transition);
+    }
+    .footer-col a:hover {
+      color: var(--primary);
+    }
+    .footer ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .footer li {
+      margin-bottom: 0.75rem;
+    }
+    .footer a {
+      color: var(--text-light);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+    .footer a:hover {
+      color: var(--primary);
+    }
+    .footer-bottom {
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(0,0,0,0.1);
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.9rem;
+      color: var(--text-light);
+    }
+    @media (max-width: 768px) {
+      .footer-container { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 480px) {
+      .footer-container { grid-template-columns: 1fr; text-align: center; }
+    }
+
+    .cta-section {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      padding: 5rem 0;
+      text-align: center;
+    }
+
+    .cta-section h2 {
+      color: white;
+      margin-bottom: 1rem;
+    }
+
+    .cta-section p {
+      opacity: 0.9;
+      margin-bottom: 2rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cta-section .btn {
+      background: white;
+      color: var(--text);
+      border: 2px solid white;
+      font-weight: 700;
+    }
+    .cta-section .btn:hover {
+      background: transparent;
+      color: white;
+    }
+
+    @keyframes blob {
+      0%, 100% { transform: translateY(-50%); }
+      50% { transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <!-- NAVIGATION (PFLICHT - von unten kopieren) -->
+  <nav class="nav">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">Core Lab</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Startseite</a></li>
+        <li><a href="ueber-uns.html">Über uns</a></li>
+        <li><a href="leistungen.html">Leistungen</a></li>
+        <li><a href="kontakt.html">Kontakt</a></li>
+        <li><a href="impressum.html">Impressum</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <div class="hero-container">
+      <div class="hero-content">
+        <h1>Willkommen bei Core Lab</h1>
+        <p>Ihr verlässlicher Partner für innovative IT-Lösungen und umfassenden Netzwerkservice.</p>
+        <div class="hero-buttons">
+          <a href="leistungen.html" class="btn btn-primary">Unsere Leistungen</a>
+        </div>
+      </div>
+      <div class="hero-visual"></div>
+    </div>
+  </section>
+
+  <!-- MAIN CONTENT -->
+  <!-- Section 3: TEXT-BLOCK -->
+  <section class="section">
+    <div class="container">
+      <div class="text-block">
+        <h3>Unsere Mission</h3>
+        <p>Bei Core Lab setzen wir auf innovative Technologien und maßgeschneiderte Lösungen, um die IT-Bedürfnisse unserer Kunden optimal zu erfüllen. Unser Team aus erfahrenen Experten arbeitet eng mit Ihnen zusammen, um sicherzustellen, dass Ihre IT-Infrastruktur effizient und zukunftssicher ist.</p>
+        <p>Wir glauben, dass Technologie der Schlüssel zu einer erfolgreichen Zukunft ist. Daher investieren wir kontinuierlich in unsere Fähigkeiten und unser Wissen, um Ihnen die besten Lösungen zu bieten.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 4: NUMBERED-LIST -->
+  <section class="section alt-bg">
+    <div class="container">
+      <div class="section-header">
+        <h2>Unsere Vorgehensweise</h2>
+        <p>Effiziente Prozesse für bestmögliche Ergebnisse</p>
+      </div>
+      <div class="numbered-list">
+        <div class="numbered-item">
+          <span class="num">01</span>
+          <div>
+            <h3>Analyse Ihrer Bedürfnisse</h3>
+            <p>Wir beginnen mit einer gründlichen Analyse Ihrer aktuellen IT-Infrastruktur und Ihrer spezifischen Anforderungen. Auf dieser Grundlage erstellen wir einen maßgeschneiderten Plan.</p>
+          </div>
+        </div>
+        <div class="numbered-item">
+          <span class="num">02</span>
+          <div>
+            <h3>Entwicklung der Lösung</h3>
+            <p>Unser Team entwickelt eine individuelle Lösung, die perfekt auf Ihre Anforderungen abgestimmt ist. Wir setzen auf modernste Technologien und bewährte Methoden.</p>
+          </div>
+        </div>
+        <div class="numbered-item">
+          <span class="num">03</span>
+          <div>
+            <h3>Implementierung und Support</h3>
+            <p>Wir implementieren die Lösung nahtlos in Ihre bestehende Infrastruktur und bieten umfassenden Support, um einen reibungslosen Betrieb sicherzustellen.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 5: FEATURE-BOXES -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Unsere Stärken</h2>
+      </div>
+      <div class="feature-boxes">
+        <div class="feature-box">
+          <h3>Innovative Technologien</h3>
+          <p>Wir setzen auf die neuesten Technologien, um Ihnen die besten IT-Lösungen zu bieten. Unsere Experten sind stets auf dem neuesten Stand der Technik.</p>
+        </div>
+        <div class="feature-box">
+          <h3>Kundenspezifische Lösungen</h3>
+          <p>Jedes Unternehmen ist einzigartig. Deshalb bieten wir maßgeschneiderte Lösungen, die genau auf Ihre speziellen Bedürfnisse abgestimmt sind.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 6: FAQ-STYLE -->
+  <section class="section alt-bg">
+    <div class="container">
+      <div class="section-header">
+        <h2>Häufige Fragen</h2>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item">
+          <h4>Wie lange dauert die Implementierung einer neuen Lösung?</h4>
+          <p>Die Dauer der Implementierung hängt von der Komplexität der Lösung und den spezifischen Anforderungen Ihres Unternehmens ab. In der Regel dauert der Prozess einige Wochen.</p>
+        </div>
+        <div class="faq-item">
+          <h4>Bieten Sie auch Schulungen für unsere Mitarbeiter an?</h4>
+          <p>Ja, wir bieten umfassende Schulungen an, um sicherzustellen, dass Ihre Mitarbeiter die neuen Systeme effektiv nutzen können.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA SECTION -->
+  <section class="cta-section">
+    <div class="container">
+      <h2>Bereit, mit uns zu starten?</h2>
+      <p>Kontaktieren Sie uns noch heute und erfahren Sie, wie wir Ihnen helfen können, Ihre IT-Infrastruktur zu optimieren.</p>
+      <a href="kontakt.html" class="btn">Kontaktieren Sie uns</a>
+    </div>
+  </section>
+
+  <!-- FOOTER (PFLICHT - von unten kopieren) -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="index.html">Startseite</a></li>
+          <li><a href="ueber-uns.html">Über uns</a></li>
+          <li><a href="leistungen.html">Leistungen</a></li>
+          <li><a href="kontakt.html">Kontakt</a></li>
+          <li><a href="impressum.html">Impressum</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Kontakt</h4>
+        <ul>
+          <li><a href="mailto:zentrale@corelab-online.de">zentrale@corelab-online.de</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2023 Core Lab. Alle Rechte vorbehalten.</p>
+    </div>
+  </footer>
+</body>
+</html>

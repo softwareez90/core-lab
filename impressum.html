@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Core Lab - Impressum</title>
+  <style>
+    :root {
+      --primary: #21c1ed;
+      --secondary: #70d0eb;
+      --accent: #de2b40;
+      --background: #f2f6f7;
+      --text: #1d3035;
+      --text-light: #1d3035cc;
+      --white: #ffffff;
+      --font-heading: 'Outfit', sans-serif;
+      --font-body: 'Open Sans', sans-serif;
+      --radius: 11px;
+      --section-padding: 93px;
+      --container-width: 1210px;
+      --nav-height: 81px;
+      --shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+      --shadow-lg: 0 10px calc(16px * 2) rgba(0, 0, 0, 0.12);
+      --shadow-glow: 0 0 30px #21c1ed40;
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      --glass-bg: rgba(255, 255, 255, 0.1);
+      --glass-border: rgba(255, 255, 255, 0.2);
+      --btn-padding: 17px 34px;
+    }
+
+    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&family=Open+Sans:wght@300;400;500;600&display=swap');
+
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--text);
+      background: var(--background);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--text);
+    }
+
+    h1 { font-size: clamp(2.5rem, 6vw, 4rem); }
+    h2 { font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 1rem; }
+    h3 { font-size: clamp(1.25rem, 2vw, 1.5rem); }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .section {
+      padding: 5rem 0;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .section-header h2 {
+      margin-bottom: 1rem;
+    }
+
+    .section-header p {
+      color: var(--text-light);
+      max-width: 600px;
+      margin: 0 auto;
+      font-size: 1.125rem;
+    }
+
+    .footer {
+      background: var(--background); color: var(--text);
+      padding: 4rem 0 2rem;
+      margin-top: -50px; padding-top: 100px;
+    }
+    .footer-container {
+      max-width: var(--container-width);
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 3rem;
+    }
+    .footer-col h4 {
+      margin-bottom: 1.5rem;
+      font-size: 1.1rem;
+      color: var(--text);
+    }
+    .footer-col ul {
+      list-style: none;
+    }
+    .footer-col li {
+      margin-bottom: 0.75rem;
+    }
+    .footer-col a {
+      color: var(--text-light);
+      transition: var(--transition);
+    }
+    .footer-col a:hover {
+      color: var(--primary);
+    }
+    /* Footer Links auch ohne .footer-col */
+    .footer ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .footer li {
+      margin-bottom: 0.75rem;
+    }
+    .footer a {
+      color: var(--text-light);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+    .footer a:hover {
+      color: var(--primary);
+    }
+    .footer-bottom {
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(0,0,0,0.1);
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.9rem;
+      color: var(--text-light);
+    }
+    @media (max-width: 768px) {
+      .footer-container { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 480px) {
+      .footer-container { grid-template-columns: 1fr; text-align: center; }
+    }
+
+    .nav {
+      position: sticky; top: 0; z-index: 1000;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      box-shadow: var(--shadow);
+      border-bottom: 1px solid rgba(0,0,0,0.1);
+      height: var(--nav-height);
+      display: flex;
+      align-items: center;
+      transition: var(--transition);
+    }
+    .nav-container {
+      max-width: var(--container-width);
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: white;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      color: white;
+      font-weight: 500;
+      padding: 0.5rem 0;
+      position: relative;
+    }
+    .nav-links a:hover { color: var(--primary); }
+    .nav-cta {
+      background: white;
+      color: var(--primary);
+      padding: var(--btn-padding);
+      border-radius: var(--radius);
+      font-weight: 600;
+    }
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <!-- NAVIGATION (PFLICHT - von unten kopieren) -->
+  <nav class="nav">
+    <div class="nav-container">
+      <div class="nav-logo">Core Lab</div>
+      <ul class="nav-links">
+        <li><a href="index.html">Startseite</a></li>
+        <li><a href="ueber-uns.html">Über uns</a></li>
+        <li><a href="leistungen.html">Leistungen</a></li>
+        <li><a href="kontakt.html">Kontakt</a></li>
+        <li><a href="impressum.html">Impressum</a></li>
+      </ul>
+    </div>
+  </nav>
+  
+  <!-- MAIN CONTENT -->
+  <div class="container">
+    <div class="section-header">
+      <h2>Impressum</h2>
+    </div>
+    <div class="text-block">
+      <h3>Core Lab</h3>
+      <p>Inhaber: Christa Marques</p>
+      <p>Adresse: Lokstedter Steindamm 35, 22529 Hamburg</p>
+      <p>E-Mail: <a href="mailto:zentrale@corelab-online.de">zentrale@corelab-online.de</a></p>
+    </div>
+  </div>
+  
+  <!-- FOOTER (PFLICHT - von unten kopieren) -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="index.html">Startseite</a></li>
+          <li><a href="ueber-uns.html">Über uns</a></li>
+          <li><a href="leistungen.html">Leistungen</a></li>
+          <li><a href="kontakt.html">Kontakt</a></li>
+          <li><a href="impressum.html">Impressum</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Kontakt</h4>
+        <ul>
+          <li><a href="mailto:zentrale@corelab-online.de">zentrale@corelab-online.de</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Rechtliches</h4>
+        <ul>
+          <li>© 2023 Core Lab</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2023 Core Lab. Alle Rechte vorbehalten.</p>
+    </div>
+  </footer>
+</body>
+</html>
