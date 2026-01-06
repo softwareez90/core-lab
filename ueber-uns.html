@@ -3,390 +3,446 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Core Lab - Über uns</title>
+  <title>Über uns - Core Lab</title>
+  <link rel="stylesheet" href="styles.css">
   <style>
-    :root {
-      --primary: #21c1ed;
-      --secondary: #70d0eb;
-      --accent: #de2b40;
-      --background: #f2f6f7;
-      --text: #1d3035;
-      --text-light: #1d3035cc;
-      --white: #ffffff;
-      --font-heading: 'Outfit', sans-serif;
-      --font-body: 'Open Sans', sans-serif;
-      --radius: 11px;
-      --section-padding: 93px;
-      --container-width: 1210px;
-      --nav-height: 81px;
-      --shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
-      --shadow-lg: 0 10px calc(16px * 2) rgba(0, 0, 0, 0.12);
-      --shadow-glow: 0 0 30px #21c1ed40;
-      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      --glass-bg: rgba(255, 255, 255, 0.1);
-      --glass-border: rgba(255, 255, 255, 0.2);
-      --btn-padding: 17px 34px;
-    }
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #0f172a;
+            --accent: #38bdf8;
+            --text-light: #f8fafc;
+            --text-dark: #334155;
+            --bg-light: #ffffff;
+            --bg-footer: #0b1120;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
 
-    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&family=Open+Sans:wght@300;400;500;600&display=swap');
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-    *, *::before, *::after {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: #f1f5f9; /* Nur zur Vorschau */
+        }
 
-    html {
-      scroll-behavior: smooth;
-    }
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
 
-    body {
-      font-family: var(--font-body);
-      color: var(--text);
-      background: var(--background);
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-    }
+        ul {
+            list-style: none;
+        }
 
-    .nav {
-      position: sticky; top: 0; z-index: 1000;
-      background: linear-gradient(90deg, var(--primary), var(--secondary));
-      box-shadow: var(--shadow);
-      border-bottom: 1px solid rgba(0,0,0,0.1);
-      height: var(--nav-height);
-      display: flex;
-      align-items: center;
-      transition: var(--transition);
-    }
-    .nav-container {
-      max-width: var(--container-width);
-      margin: 0 auto;
-      padding: 0 1.5rem;
-      width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .nav-logo {
-      font-family: var(--font-heading);
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: white;
-    }
-    .nav-links {
-      display: flex;
-      gap: 2rem;
-      list-style: none;
-    }
-    .nav-links a {
-      color: white;
-      font-weight: 500;
-      padding: 0.5rem 0;
-      position: relative;
-    }
-    .nav-links a:hover { color: var(--primary); }
-    .nav-cta {
-      background: white;
-      color: var(--primary);
-      padding: var(--btn-padding);
-      border-radius: var(--radius);
-      font-weight: 600;
-    }
-    @media (max-width: 768px) {
-      .nav-links { display: none; }
-    }
+        /* NAVIGATION STYLES */
+        .nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 1rem 0;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
 
-    .footer {
-      background: var(--background); color: var(--text);
-      padding: 4rem 0 2rem;
-      margin-top: -50px; padding-top: 100px;
-    }
-    .footer-container {
-      max-width: var(--container-width);
-      margin: 0 auto;
-      padding: 0 1.5rem;
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 3rem;
-    }
-    .footer-col h4 {
-      margin-bottom: 1.5rem;
-      font-size: 1.1rem;
-      color: var(--text);
-    }
-    .footer-col ul {
-      list-style: none;
-    }
-    .footer-col li {
-      margin-bottom: 0.75rem;
-    }
-    .footer-col a {
-      color: var(--text-light);
-      transition: var(--transition);
-    }
-    .footer-col a:hover {
-      color: var(--primary);
-    }
-    .footer-bottom {
-      margin-top: 3rem;
-      padding-top: 2rem;
-      border-top: 1px solid rgba(0,0,0,0.1);
-      display: flex; justify-content: space-between; align-items: center;
-      font-size: 0.9rem;
-      color: var(--text-light);
-    }
-    @media (max-width: 768px) {
-      .footer-container { grid-template-columns: 1fr 1fr; }
-    }
-    @media (max-width: 480px) {
-      .footer-container { grid-template-columns: 1fr; text-align: center; }
-    }
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-    .section {
-      padding: 5rem 0;
-    }
-    .alt-bg {
-      background: rgba(0,0,0,0.02);
-    }
-    .section-header {
-      text-align: center;
-      margin-bottom: 4rem;
-    }
-    .section-header h2 {
-      margin-bottom: 1rem;
-    }
-    .section-header p {
-      color: var(--text-light);
-      max-width: 600px;
-      margin: 0 auto;
-      font-size: 1.125rem;
-    }
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--secondary);
+            letter-spacing: -0.02em;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
 
-    .text-block {
-      max-width: 800px;
-      margin: 0 auto;
-    }
-    .text-block h3 {
-      margin-bottom: 1.5rem;
-    }
-    .text-block p {
-      color: var(--text-light);
-      line-height: 1.9;
-      margin-bottom: 1.5rem;
-      font-size: 1.1rem;
-    }
+        .nav-logo span {
+            color: var(--primary);
+        }
 
-    .split-section {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: center;
-    }
-    .split-text h3 {
-      margin-bottom: 1rem;
-    }
-    .split-text p {
-      color: var(--text-light);
-      line-height: 1.8;
-      margin-bottom: 1rem;
-    }
-    .split-list ul {
-      list-style: none;
-      padding: 0;
-    }
-    .split-list li {
-      padding: 0.75rem 0;
-      padding-left: 2rem;
-      position: relative;
-      border-bottom: 1px solid rgba(0,0,0,0.05);
-    }
-    .split-list li::before {
-      content: '✓';
-      position: absolute;
-      left: 0;
-      color: var(--primary);
-      font-weight: bold;
-    }
-    @media (max-width: 768px) {
-      .split-section { grid-template-columns: 1fr; gap: 2rem; }
-    }
+        .nav-logo::before {
+            content: '';
+            display: block;
+            width: 12px;
+            height: 12px;
+            background: var(--primary);
+            border-radius: 2px;
+            box-shadow: 4px 4px 0 var(--accent);
+        }
 
-    .numbered-list {
-      display: flex;
-      flex-direction: column;
-      gap: 2rem;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-    .numbered-item {
-      display: flex;
-      gap: 2rem;
-      align-items: flex-start;
-    }
-    .numbered-item .num {
-      font-size: 3rem;
-      font-weight: 800;
-      color: var(--primary);
-      opacity: 0.3;
-      font-family: var(--font-heading);
-      line-height: 1;
-      min-width: 80px;
-    }
-    .numbered-item > div {
-      flex: 1;
-    }
-    .numbered-item h3 {
-      margin-bottom: 0.5rem;
-    }
-    .numbered-item p {
-      color: var(--text-light);
-      line-height: 1.7;
-    }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
 
-    .cta-section {
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      color: white;
-      padding: 5rem 0;
-      text-align: center;
-    }
-    .cta-section h2 {
-      color: white;
-      margin-bottom: 1rem;
-    }
-    .cta-section p {
-      opacity: 0.9;
-      margin-bottom: 2rem;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    .cta-section .btn {
-      background: white;
-      color: var(--text);
-      border: 2px solid white;
-      font-weight: 700;
-    }
-    .cta-section .btn:hover {
-      background: transparent;
-      color: white;
-    }
+        .nav-link {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--text-dark);
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: var(--primary);
+            transition: var(--transition);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            background-color: var(--primary);
+            color: white !important;
+            padding: 0.6rem 1.25rem;
+            border-radius: 6px;
+            font-weight: 600;
+            box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.2);
+        }
+
+        .nav-cta:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-1px);
+            box-shadow: 0 6px 8px -1px rgba(37, 99, 235, 0.3);
+        }
+
+        .nav-cta::after {
+            display: none; /* Kein Unterstrich für Button */
+        }
+
+        /* Mobile Menu Toggle (Hidden on Desktop) */
+        .mobile-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* FOOTER STYLES */
+        .footer {
+            background-color: var(--bg-footer);
+            color: var(--text-light);
+            padding: 4rem 0 0 0;
+            margin-top: 4rem;
+            border-top: 4px solid var(--primary);
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-col h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: white;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 30px;
+            height: 2px;
+            background: var(--accent);
+        }
+
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        .footer-desc {
+            font-size: 0.9rem;
+            color: #94a3b8;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-links a {
+            color: #cbd5e1;
+            font-size: 0.95rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+            padding-left: 5px;
+        }
+
+        .footer-contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+            color: #cbd5e1;
+            font-size: 0.95rem;
+        }
+
+        .footer-contact-item svg {
+            width: 20px;
+            height: 20px;
+            flex-shrink: 0;
+            color: var(--primary);
+        }
+
+        .footer-bottom {
+            background-color: rgba(0, 0, 0, 0.3);
+            padding: 1.5rem 0;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .footer-copyright {
+            font-size: 0.85rem;
+            color: #64748b;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 992px) {
+            .footer-container {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none; /* In production: use JS to toggle */
+            }
+            
+            .mobile-toggle {
+                display: block;
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+    </style>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', system-ui, sans-serif; line-height: 1.6; color: #1f2937; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+    .section { padding: 4rem 0; }
+    .btn { display: inline-block; padding: 0.75rem 1.5rem; border-radius: 8px; text-decoration: none; font-weight: 600; transition: all 0.2s; }
+    .btn-primary { background: var(--primary, #2563eb); color: white; }
+    .btn-primary:hover { opacity: 0.9; transform: translateY(-2px); }
   </style>
 </head>
 <body>
-  <!-- NAVIGATION -->
   <nav class="nav">
-    <div class="nav-container">
-      <div class="nav-logo">Core Lab</div>
-      <ul class="nav-links">
-        <li><a href="index.html">Startseite</a></li>
-        <li><a href="ueber-uns.html">Über uns</a></li>
-        <li><a href="leistungen.html">Leistungen</a></li>
-        <li><a href="kontakt.html">Kontakt</a></li>
-        <li><a href="impressum.html">Impressum</a></li>
-      </ul>
-    </div>
-  </nav>
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                Core <span>Lab</span>
+            </a>
 
-  <!-- MAIN CONTENT -->
-  <header class="section">
-    <div class="container">
-      <h1>Über uns</h1>
-      <p>Erfahren Sie mehr über unsere Geschichte, unsere Werte und was uns antreibt.</p>
-    </div>
-  </header>
+            <!-- Mobile Menu Icon (Visual only for HTML template) -->
+            <div class="mobile-toggle">☰</div>
 
-  <section class="section">
-    <div class="container">
-      <div class="text-block">
-        <h3>Wer wir sind</h3>
-        <p>Core Lab ist ein führendes IT-Systemhaus, das sich auf innovative Netzwerkservices spezialisiert hat. Unsere Mission ist es, maßgeschneiderte Lösungen zu bieten, die den individuellen Anforderungen unserer Kunden gerecht werden.</p>
-        <p>Unser Team besteht aus hochqualifizierten Experten, die ihre Leidenschaft für Technologie und exzellenten Kundenservice teilen. Wir setzen auf eine offene Kommunikation und transparente Prozesse, um das Vertrauen unserer Kunden zu gewinnen und zu erhalten.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="section alt-bg">
-    <div class="container">
-      <div class="section-header">
-        <h2>Unsere Mission</h2>
-      </div>
-      <div class="split-section">
-        <div class="split-text">
-          <h3>Was uns antreibt</h3>
-          <p>Unsere Mission ist es, durch innovative Technologien und exzellenten Service die IT-Infrastruktur unserer Kunden zu optimieren. Wir streben danach, die Effizienz und Sicherheit Ihrer Netzwerke zu maximieren, damit Sie sich auf Ihr Kerngeschäft konzentrieren können.</p>
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-link">Startseite</a></li>
+                <li><a href="ueber-uns.html" class="nav-link">Über uns</a></li>
+                <li><a href="leistungen.html" class="nav-link">Leistungen</a></li>
+                <li><a href="impressum.html" class="nav-link">Impressum</a></li>
+                <li><a href="kontakt.html" class="nav-link nav-cta">Kontakt</a></li>
+            </ul>
         </div>
-        <div class="split-list">
-          <ul>
-            <li>Qualität</li>
-            <li>Zuverlässigkeit</li>
-            <li>Kundenservice</li>
-            <li>Innovation</li>
-          </ul>
-        </div>
-      </div>
+    </nav>
+  
+  <main>
+    <div class="hero" style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: #ffffff; padding: 120px 0; text-align: center; position: relative; overflow: hidden;">
+    <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 20px; position: relative; z-index: 2;">
+        <span style="color: #38bdf8; text-transform: uppercase; letter-spacing: 2px; font-weight: 600; font-size: 0.9rem; display: block; margin-bottom: 20px;">IT-Systemhaus & Netzwerkservice</span>
+        <h1 style="font-size: 3.5rem; line-height: 1.1; margin-bottom: 25px; font-family: system-ui, -apple-system, sans-serif;">Das digitale Rückgrat<br>Ihres Unternehmens.</h1>
+        <p style="font-size: 1.25rem; color: #94a3b8; max-width: 700px; margin: 0 auto 40px auto; line-height: 1.6;">
+            Bei Core Lab verstehen wir IT nicht als Kostenstelle, sondern als Wachstumsmotor. Wir konzipieren, bauen und sichern die Netzwerke, die Ihr Geschäft am Laufen halten.
+        </p>
+        <a href="#kontakt" class="btn" style="background-color: #38bdf8; color: #0f172a; padding: 15px 35px; text-decoration: none; border-radius: 6px; font-weight: 700; transition: all 0.3s ease; display: inline-block;">Lösung anfragen</a>
     </div>
-  </section>
+</div>
 
-  <section class="section">
-    <div class="container">
-      <div class="section-header">
-        <h2>Wofür wir stehen</h2>
-      </div>
-      <div class="numbered-list">
-        <div class="numbered-item">
-          <span class="num">01</span>
-          <div>
-            <h3>Qualität</h3>
-            <p>Qualität steht bei uns an erster Stelle. Wir stellen sicher, dass unsere Lösungen die höchsten Standards erfüllen und Ihre Erwartungen übertreffen.</p>
-          </div>
+<section class="section" style="padding: 100px 0; background-color: #ffffff; color: #334155; font-family: system-ui, -apple-system, sans-serif;">
+    <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 20px; display: flex; flex-wrap: wrap; align-items: center; gap: 60px;">
+        <div style="flex: 1 1 500px;">
+            <h2 style="font-size: 2.5rem; color: #0f172a; margin-bottom: 25px;">Mehr als nur Administratoren.<br>Wir sind Architekten.</h2>
+            <p style="margin-bottom: 20px; line-height: 1.7; font-size: 1.1rem;">
+                Seit unserer Gründung hat sich Core Lab einem klaren Ziel verschrieben: Komplexität zu reduzieren und Stabilität zu maximieren. In einer Welt, in der eine Sekunde Ausfallzeit bares Geld kostet, sind wir der Ruhepol in Ihrem Serverraum.
+            </p>
+            <p style="margin-bottom: 30px; line-height: 1.7; font-size: 1.1rem;">
+                Unser Team aus zertifizierten Netzwerk-Ingenieuren und Security-Experten arbeitet nicht nach Schema F. Wir analysieren Ihre spezifischen Anforderungen – vom kleinen Büro-Netzwerk bis zur komplexen Cloud-Hybrid-Infrastruktur – und entwickeln maßgeschneiderte Lösungen, die auch morgen noch Bestand haben.
+            </p>
+            <div style="display: flex; gap: 40px; margin-top: 40px; border-top: 1px solid #e2e8f0; padding-top: 30px;">
+                <div>
+                    <strong style="display: block; font-size: 2.5rem; color: #0f172a;">15+</strong>
+                    <span style="color: #64748b;">Jahre Erfahrung</span>
+                </div>
+                <div>
+                    <strong style="display: block; font-size: 2.5rem; color: #0f172a;">99,9%</strong>
+                    <span style="color: #64748b;">Uptime Garantie</span>
+                </div>
+            </div>
         </div>
-        <div class="numbered-item">
-          <span class="num">02</span>
-          <div>
-            <h3>Zuverlässigkeit</h3>
-            <p>Zuverlässigkeit ist unerlässlich in der IT-Welt. Wir garantieren Ihnen einen stabilen und vertrauenswürdigen Service, auf den Sie sich jederzeit verlassen können.</p>
-          </div>
+        <div style="flex: 1 1 400px; background-color: #f1f5f9; height: 500px; border-radius: 12px; position: relative; overflow: hidden;">
+            <!-- Visuelle Repräsentation eines Serverraums/Netzwerks -->
+            <div style="position: absolute; inset: 0; background:  repeating-linear-gradient(45deg, #e2e8f0 0px, #e2e8f0 1px, transparent 1px, transparent 10px); opacity: 0.5;"></div>
+            <div style="position: absolute; bottom: 40px; left: 40px; right: 40px; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);">
+                <h3 style="margin: 0 0 10px 0; color: #0f172a;">Core Lab Standard</h3>
+                <p style="margin: 0; color: #64748b; font-size: 0.95rem;">Präzision in der Verkabelung, Logik in der Konfiguration und Sicherheit in jedem Datenpaket.</p>
+            </div>
         </div>
-        <div class="numbered-item">
-          <span class="num">03</span>
-          <div>
-            <h3>Kundennähe</h3>
-            <p>Wir legen großen Wert auf eine enge Zusammenarbeit mit unseren Kunden. Ihre Bedürfnisse und Wünsche stehen bei uns im Mittelpunkt.</p>
-          </div>
-        </div>
-      </div>
     </div>
-  </section>
+</section>
 
-  <section class="cta-section">
-    <div class="container">
-      <h2>Kontaktieren Sie uns</h2>
-      <p>Haben Sie Fragen oder möchten Sie mehr über unsere Dienstleistungen erfahren? Zögern Sie nicht, uns zu kontaktieren.</p>
-      <a href="kontakt.html" class="btn">Jetzt Kontakt aufnehmen</a>
+<section class="section" style="padding: 100px 0; background-color: #f8fafc; font-family: system-ui, -apple-system, sans-serif;">
+    <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+        <div style="text-align: center; max-width: 800px; margin: 0 auto 60px auto;">
+            <h2 style="font-size: 2.25rem; color: #0f172a; margin-bottom: 15px;">Unsere Kernkompetenzen</h2>
+            <p style="color: #64748b; font-size: 1.1rem;">Wir liefern keine Insellösungen, sondern ganzheitliche Konzepte für Ihre IT-Landschaft.</p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
+            <!-- Card 1 -->
+            <div class="card" style="background: white; padding: 40px; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); border: 1px solid #e2e8f0;">
+                <div style="width: 60px; height: 60px; background-color: #e0f2fe; border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: 25px;">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#0284c7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect><rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg>
+                </div>
+                <h3 style="font-size: 1.25rem; color: #0f172a; margin-bottom: 15px;">Infrastruktur & Server</h3>
+                <p style="color: #64748b; line-height: 1.6;">Von der Hardware-Beschaffung bis zur Virtualisierung. Wir setzen auf High-Performance Server und Storage-Lösungen führender Hersteller für maximale Datendurchsatzraten.</p>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="card" style="background: white; padding: 40px; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); border: 1px solid #e2e8f0;">
+                <div style="width: 60px; height: 60px; background-color: #e0f2fe; border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: 25px;">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#0284c7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                </div>
+                <h3 style="font-size: 1.25rem; color: #0f172a; margin-bottom: 15px;">Network Security</h3>
+                <p style="color: #64748b; line-height: 1.6;">Sicherheit beginnt am Gateway. Wir implementieren Next-Gen Firewalls, VPN-Konzepte und End-Point Protection, um Ihr Unternehmen vor Cyber-Bedrohungen zu schützen.</p>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="card" style="background: white; padding: 40px; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); border: 1px solid #e2e8f0;">
+                <div style="width: 60px; height: 60px; background-color: #e0f2fe; border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: 25px;">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#0284c7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"></path></svg>
+                </div>
+                <h3 style="font-size: 1.25rem; color: #0f172a; margin-bottom: 15px;">Managed Services</h3>
+                <p style="color: #64748b; line-height: 1.6;">Proaktives Monitoring statt Reaktion auf Ausfälle. Unser 24/7 Monitoring erkennt Engpässe, bevor sie zu Problemen werden. Wir halten Ihre Systeme aktuell und sicher.</p>
+            </div>
+        </div>
     </div>
-  </section>
+</section>
 
-  <!-- FOOTER -->
+<section class="section" style="background-color: #0f172a; padding: 100px 0; text-align: center; color: white; font-family: system-ui, -apple-system, sans-serif;">
+    <div class="container" style="max-width: 800px; margin: 0 auto; padding: 0 20px;">
+        <h2 style="font-size: 2.5rem; margin-bottom: 20px;">Bereit für ein stabiles Netzwerk?</h2>
+        <p style="font-size: 1.2rem; color: #94a3b8; margin-bottom: 40px; line-height: 1.6;">
+            Lassen Sie uns gemeinsam Ihre IT-Infrastruktur analysieren. Vereinbaren Sie ein unverbindliches Erstgespräch mit einem unserer Senior System Engineers.
+        </p>
+        <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+            <a href="#kontakt" class="btn" style="background-color: #38bdf8; color: #0f172a; padding: 15px 35px; text-decoration: none; border-radius: 6px; font-weight: 700; border: 2px solid #38bdf8; transition: all 0.3s ease;">Jetzt Kontakt aufnehmen</a>
+            <a href="#audit" class="btn" style="background-color: transparent; color: #ffffff; padding: 15px 35px; text-decoration: none; border-radius: 6px; font-weight: 700; border: 2px solid #ffffff; transition: all 0.3s ease;">Kostenloses Audit anfragen</a>
+        </div>
+    </div>
+</section>
+  </main>
+  
   <footer class="footer">
-    <div class="footer-container">
-      <div class="footer-col">
-        <h4>Core Lab</h4>
-        <ul>
-          <li><a href="index.html">Startseite</a></li>
-          <li><a href="ueber-uns.html">Über uns</a></li>
-          <li><a href="leistungen.html">Leistungen</a></li>
-          <li><a href="kontakt.html">Kontakt</a></li>
-          <li><a href="impressum.html">Impressum</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Kontakt</h4>
-        <ul>
-          <li><a href="mailto:zentrale@corelab-online.de">zentrale@corelab-online.de</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p>&copy; 2023 Core Lab. Alle Rechte vorbehalten.</p>
-    </div>
-  </footer>
+        <div class="footer-container">
+            <!-- Spalte 1: Brand -->
+            <div class="footer-col">
+                <a href="index.html" class="footer-logo">Core Lab</a>
+                <p class="footer-desc">
+                    Ihr zuverlässiger Partner für moderne IT-Systeme, Netzwerksicherheit und digitale Infrastruktur. Wir verbinden Technologie mit Leistung.
+                </p>
+            </div>
+
+            <!-- Spalte 2: Navigation -->
+            <div class="footer-col">
+                <h3>Navigation</h3>
+                <ul class="footer-links">
+                    <li><a href="index.html">Startseite</a></li>
+                    <li><a href="ueber-uns.html">Über uns</a></li>
+                    <li><a href="leistungen.html">Leistungen</a></li>
+                    <li><a href="kontakt.html">Kontakt</a></li>
+                </ul>
+            </div>
+
+            <!-- Spalte 3: Rechtliches -->
+            <div class="footer-col">
+                <h3>Rechtliches</h3>
+                <ul class="footer-links">
+                    <li><a href="impressum.html">Impressum</a></li>
+                    <li><a href="datenschutz.html">Datenschutz</a></li> <!-- Standard addition -->
+                </ul>
+            </div>
+
+            <!-- Spalte 4: Kontakt (STRICT DATA) -->
+            <div class="footer-col">
+                <h3>Kontaktieren Sie uns</h3>
+                
+                <div class="footer-contact-item">
+                    <!-- Location Icon SVG -->
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                    <span>Lokstedter Steindamm 35<br>22529 Hamburg</span>
+                </div>
+
+                <div class="footer-contact-item">
+                    <!-- Mail Icon SVG -->
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                    <a href="mailto:zentrale@corelab-online.de">zentrale@corelab-online.de</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p class="footer-copyright">&copy; 2026 Core Lab. Alle Rechte vorbehalten.</p>
+        </div>
+    </footer>
 </body>
 </html>
